@@ -30,8 +30,13 @@ def call(Map config = [:]) {
             stage('2. Security Scan (SAST)') {
                 steps {
                     echo 'Scanning code for vulnerabilities...'
-                    // Keeping your placeholder for the course requirement
-                    sh 'sleep 2'
+                    // // Keeping your placeholder for the course requirement
+                    // sh 'sleep 2'
+                    /* The --audit-level=high flag tells npm to return an error 
+                    only if 'high' or 'critical' issues are found. 
+                    Removing '|| true' ensures the pipeline STOPS here on failure.
+                    */
+                    sh 'npm audit --audit-level=high'
                     echo 'SAST Scan: 0 Critical Issues Found'
                 }
             }
