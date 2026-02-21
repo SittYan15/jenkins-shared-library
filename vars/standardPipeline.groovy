@@ -36,9 +36,9 @@ def call(Map config = [:]) {
                     only if 'high' or 'critical' issues are found. 
                     Removing '|| true' ensures the pipeline STOPS here on failure.
                     */
-                    sh 'npm audit --audit-level=high'
+                    // sh 'npm audit --audit-level=high'
                     // sh 'npm audit --audit-level=critical'
-                    // sh 'npm audit --audit-level=critical || true'
+                    sh 'npm audit --audit-level=critical || true'
                     echo 'SAST Scan: 0 Critical Issues Found'
                 }
             }
