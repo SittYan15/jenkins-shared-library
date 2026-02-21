@@ -2,23 +2,16 @@ def call(Map config = [:]) {
     pipeline {
         agent any
         stages {
-            stage('Build') {
+            stage('Enterprise Build') {
                 steps {
-                    echo "Building ${config.projectName}..."
-                    sh 'echo "npm install && npm build" > build-log.txt'
+                    echo "Starting build for project: ${config.projectName}"
+                    sh 'echo "Building..." && sleep 2'
                 }
             }
-            stage('Security Scan (SAST)') {
+            stage('Enterprise Security Scan') {
                 steps {
-                    echo "Checking for vulnerabilities..."
-                    // Simulating a security tool like Snyk or SonarQube
-                    sh 'sleep 2 && echo "Scan Complete: 0 Vulnerabilities Found"'
-                }
-            }
-            stage('Deploy to Staging') {
-                steps {
-                    echo "Deploying to Staging Server: ${config.stagingUrl}"
-                    sh 'echo "Deployed successfully!"'
+                    echo "Scanning ${config.projectName} for vulnerabilities..."
+                    sh 'sleep 2 && echo "Scan Complete: 100% Secure"'
                 }
             }
         }
