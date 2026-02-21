@@ -20,9 +20,9 @@ def call(Map config = [:]) {
 
             stage('1. Build') {
                 steps {
-                    echo 'Installing dependencies and building React app...'
+                    echo 'Installing dependencies (skipping puppeteer download)...'
                     // These commands now actually run instead of just being echoed
-                    sh 'npm install'
+                    sh 'PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true npm install'
                     sh 'npm run build'
                 }
             }
