@@ -14,7 +14,12 @@ def call(Map config = [:]) {
                     sh 'sleep 2 && echo "SAST Scan: 0 Critical Issues Found"'
                 }
             }
-            stage('3. Deploy to Staging') {
+            stage('3. Build Docker Image') {
+                steps {
+                    sh 'docker build -t sittyan/todo-app:latest .'
+                }
+            }
+            stage('4. Deploy to Staging') {
                 steps {
                     echo "Deploying ${config.appName} to http://localhost:3000"
                     // These commands manage the container on your Mac
