@@ -1,6 +1,9 @@
 def call(Map config = [:]) {
     pipeline {
         agent any
+        tools {
+            nodejs 'node'
+        }
 
         environment {
             DOCKER_IMAGE = "sittyan/todo-app:latest"
