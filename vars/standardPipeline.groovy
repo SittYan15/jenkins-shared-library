@@ -47,6 +47,7 @@ def call(Map config = [:]) {
                 steps {
                     echo 'Packaging application into Docker image...'
                     // This builds the image locally on your MacBook's Docker engine
+                    sh 'sudo chmod 666 /var/run/docker.sock || true'
                     sh "docker build -t ${DOCKER_IMAGE} ." 
                 }
             }
